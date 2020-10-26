@@ -1,0 +1,23 @@
+program:
+{
+	numar a, b, c, max;
+	a = 2;
+	b = 5;
+	c = 4;
+	daca(a >= b && a >= c)
+	{
+		max = a;
+	}
+	altfel
+	daca(b >= a && b >= c)
+	{
+		max = b;
+	}
+	altfel
+	daca(c >= a && c >= b)
+	{
+		max = c;
+	}
+	tipareste("Rezultatul este ");
+	tipareste(max);
+}

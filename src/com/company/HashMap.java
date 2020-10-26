@@ -50,4 +50,16 @@ public class HashMap<V>  {
 
         return entry.get();
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+
+        for (LinkedList<Pair<String, V>> list:
+             array) {
+            str.append(list.toString()).append('\n');
+        }
+
+        return str.toString();
+    }
 }
