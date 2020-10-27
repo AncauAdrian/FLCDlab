@@ -1,4 +1,5 @@
-The SymTable is implemented by a HashMap using linked list conflict resolution[]
+The SymTable is implemented by a HashMap using linked list conflict resolution
+[]
 [[max, 0]]
 []
 []

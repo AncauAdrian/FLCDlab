@@ -208,21 +208,12 @@ public class Main {
             System.out.println(errorLine);
             System.out.println("Reason - " + errorReason);
         }
+        else System.out.println("Program is Lexically Correct");
 
         codeReader.close();
     }
 
-    public static void main(String[] args) {
-        readTokensList("tokens.in");
-        if (operators.isEmpty() || reservedWords.isEmpty())
-            return;
-
-        System.out.println("Successfully read tokens.in file!\nOperators: " + operators);
-        System.out.println("Reserved Words: " + reservedWords);
-        System.out.println("Separators: " + Arrays.toString(separators));
-
-        readProgram(args[0]);
-
+    static void writeSymTable() {
         try {
             File symTableFile = new File("ST.out");
             if(symTableFile.createNewFile())
@@ -237,7 +228,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    static void writePif() {
         try {
             File pifFile = new File("PIF.out");
             FileWriter pifWriter = new FileWriter(pifFile);
@@ -253,5 +246,19 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        readTokensList("tokens.in");
+        if (operators.isEmpty() || reservedWords.isEmpty())
+            return;
+
+        System.out.println("Successfully read tokens.in file!\nOperators: " + operators);
+        System.out.println("Reserved Words: " + reservedWords);
+        System.out.println("Separators: " + Arrays.toString(separators));
+
+        readProgram(args[0]);
+        writeSymTable();
+        writePif();
     }
 }
