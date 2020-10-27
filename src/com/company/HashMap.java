@@ -26,16 +26,18 @@ public class HashMap<V>  {
         return accumulator % m;
     }
 
-    public Pair<String, V> add(String identifier, V value) {
+    public Pair<Integer, Integer> add(String identifier, V value) {
         int hash = hash(identifier);
 
         Pair<String, V> pair =  new Pair<>(identifier, value);
         array.get(hash).add(pair);
 
-        return pair;
+        int pos = array.get(hash).indexOf(pair);
+
+        return new Pair<>(hash, pos);
     }
 
-    public Pair<String, V> search(String key) {
+    public Pair<Integer, Integer> search(String key) {
         // Calculate the hash of the key
         int hash = hash(key);
 
@@ -48,7 +50,7 @@ public class HashMap<V>  {
         if(entry.isEmpty())
             return null;
 
-        return entry.get();
+        return new Pair<>(hash, list.indexOf(entry.get()));
     }
 
     @Override

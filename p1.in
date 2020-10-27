@@ -1,6 +1,6 @@
 program:
 {
-	numar a, b, c, max;
+	numar a, b, c, max, i;
 	a = 2;
 	b = 5;
 	c = 4;

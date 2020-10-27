@@ -11,7 +11,7 @@ public class Main {
     private static final List<String> reservedWords = new LinkedList<>();
     private static final String[] separators = {",", ";", "{", "}", "(", ")", " ", "\""};
     private static final HashMap<Integer> symbolTable = new HashMap<>();
-    private static final List<Pair<String, String>> pif = new LinkedList<>();
+    private static final List<Pair<String, Pair<Integer, Integer>>> pif = new LinkedList<>();
 
     private enum TokenType {
         CONSTANT_NUMBER,
@@ -92,15 +92,17 @@ public class Main {
             return false;
 
         if(type == TokenType.IDENTIFIER) {
-            if(symbolTable.search(token) == null)
-                symbolTable.add(token, 0);
+            Pair<Integer, Integer> position = symbolTable.search(token);
+            if(symbolTable.search(token) == null) {
+                pif.add(new Pair<>("ID", symbolTable.add(token, 0)));
+            }
 
-            pif.add(new Pair<>("ID", token));
+            pif.add(new Pair<>("ID", position));
             return true;
         }
 
         if(type == TokenType.CONSTANT_NUMBER || type == TokenType.CONSTANT_STRING) {
-            pif.add(new Pair<>("CONST", token));
+            pif.add(new Pair<>("CONST", symbolTable.add(token, null)));
             return true;
         }
 
@@ -238,7 +240,7 @@ public class Main {
             if(pifFile.createNewFile())
                 System.out.println("Created file " + pifFile.getName());
 
-            for (Pair<String, String> e:
+            for (Pair<String, Pair<Integer, Integer>> e:
                     pif) {
                 pifWriter.write(e.toString() + '\n');
             }
