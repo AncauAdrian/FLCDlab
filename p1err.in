@@ -1,0 +1,6 @@
+program:
+{
+	numar numărul_meu;
+	text textul_meu;
+	textul_meu = "a meu;
+}
